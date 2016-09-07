@@ -1,2 +1,38 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+@import 'colors';
+$unit: 9vh;
+$height: ($unit * 3);
+$width: ($unit * 4);
+
+body {
+  background-color: $dark-purple;
+  color: $crazy-yellow;
+}
+
+h1 {
+  font-size: 38px;
+  line-height: 1;
+  text-align: center;
+}
+
+.game-cell {
+  height: $height;
+  width: $width;
+}
+
+.top-row {
+  border-bottom: 5px $crazy-yellow solid;
+}
+
+.mid-row {
+  border-bottom: 5px $crazy-yellow solid;
+}
+
+.left-column {
+  border-right: 5px $crazy-yellow solid;
+}
+
+.mid-column {
+  border-right: 5px $crazy-yellow solid;
+}
