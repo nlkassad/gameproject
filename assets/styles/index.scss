@@ -1,6 +1,9 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 @import 'colors';
+$unit: 9vh;
+$height: ($unit * 3);
+$width: ($unit * 4);
 
 body {
   background-color: $dark-purple;
@@ -8,9 +11,27 @@ body {
 }
 
 game-board {
-  margin: 0 2vh;
+  border: 0;
+  margin: 2px $crazy-yellow solid;
+}
+
+.game-cell {
+  height: $height;
+  width: $width;
 }
 
 .top-row {
-  margin-bottom: 1px $crazy-yellow solid
+  border-bottom: 5px $crazy-yellow solid;
+}
+
+.middle-row {
+  border-bottom: 5px $crazy-yellow solid;
+}
+
+.left-column {
+  border-right: 5px $crazy-yellow solid;
+}
+
+.mid-column {
+  border-right: 5px $crazy-yellow solid;
 }
