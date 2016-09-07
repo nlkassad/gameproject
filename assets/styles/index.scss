@@ -1,2 +1,16 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+@import 'colors';
+
+body {
+  background-color: $dark-purple;
+  color: $crazy-yellow;
+}
+
+game-board {
+  margin: 0 2vh;
+}
+
+.top-row {
+  margin-bottom: 1px $crazy-yellow solid
+}
