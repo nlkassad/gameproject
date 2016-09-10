@@ -5,11 +5,12 @@ const api = require('./api');
 const ui = require('./ui');
 
 const onSignUp = function (event) {
+  debugger;
   let data = getFormFields(event.target);
   event.preventDefault();
 
   api.signUp(data)
-    .done(ui.success)
+    .done(ui.signUpSuccess)
     .fail(ui.failure);
 };
 
@@ -45,7 +46,6 @@ const addHandlers = () => {
   $('#sign-in').on('submit', onSignIn);
   $('#change-password').on('submit', onChangePassword);
   $('#sign-out').on('submit', onSignOut);
-
 };
 
 module.exports = {
