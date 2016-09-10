@@ -9,12 +9,13 @@ const hideModal = function (){
 const signInSuccess = (data) => {
   app.user = data.user;
   hideModal();
+  $("#user-one").text(app.user.email);
 };
 
 const signUpSuccess = (data) => {
   app.user = data.user;
   hideModal();
-  console.log(data);
+  $("#user-one").text(app.user.email);
 };
 
 const failure = (error) => {
@@ -27,10 +28,10 @@ const changePasswordSuccess = () => {
 };
 
 const signOutSuccess = () => {
-  console.log('okay fine leave');
+  app.user = null;
+  hideModal();
+  $("#user-one").text("");
 };
-
-
 
 module.exports = {
   failure,
@@ -38,5 +39,4 @@ module.exports = {
   signInSuccess,
   changePasswordSuccess,
   signOutSuccess,
-
 };
