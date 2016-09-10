@@ -41,7 +41,7 @@ const onSignOut = function (event) {
 };
 
 function handleBoxAClick () {
-  console.log("clicked box A!");
+  console.log("Box A!");
 }
 
 function handleBoxBClick () {
@@ -52,33 +52,35 @@ function handleBoxCClick () {
   console.log('Box C');
 }
 
-function handleBoxDClick () {
+function handleBoxDClick() {
   console.log('Box D');
 }
 
-function handleBoxEClick () {
+function handleBoxEClick() {
   console.log('Box E');
 }
 
-function handleBoxFClick () {
+function handleBoxFClick() {
   console.log('Box F');
 }
 
-function handleBoxGClick () {
+function handleBoxGClick() {
   console.log('Box G');
 }
 
-function handleBoxHClick () {
+function handleBoxHClick() {
   console.log('Box H');
 }
 
-function handleBoxIClick () {
+function handleBoxIClick() {
   console.log('Box I');
 }
 
 
-function newGame () {
-  api.startNewGame ();
+function newGame() {
+  api.startNewGame()
+    .done(ui.startGame)
+    .fail(ui.failure);
 }
 
 const addHandlers = () => {

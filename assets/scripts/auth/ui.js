@@ -45,10 +45,24 @@ const signOutSuccess = () => {
   $("#user-one").text("");
 };
 
+function updateCells(){
+  const serverCells = app.game.cells;
+  const browserCells = $('.game-cell');
+  for (let i = 0; i < browserCells.length; i++){
+    $(browserCells[i]).text(serverCells[i]);
+  }
+}
+
+const startGame = (data) => {
+  app.game = data.game;
+  updateCells ();
+};
+
 module.exports = {
   failure,
   signUpSuccess,
   signInSuccess,
   changePasswordSuccess,
   signOutSuccess,
+  startGame,
 };

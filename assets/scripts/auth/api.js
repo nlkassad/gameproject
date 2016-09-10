@@ -54,6 +54,11 @@ const startNewGame = () => {
     method: 'POST',
     headers: {
       Authorization: 'Token token=' + app.user.token
+      // IDFK how to make this work yet
+    // data: {
+    //   "token": app.user.token,
+    //   "cells": ["","","","","","","",""],
+    // }
     }
   });
 };
