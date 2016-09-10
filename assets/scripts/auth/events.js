@@ -5,7 +5,6 @@ const api = require('./api');
 const ui = require('./ui');
 
 const onSignUp = function (event) {
-  debugger;
   let data = getFormFields(event.target);
   event.preventDefault();
 
@@ -19,7 +18,7 @@ const onSignIn = function (event) {
   event.preventDefault();
 
   api.signIn(data)
-    .done(ui.signInSuccess)
+    .then(ui.signInSuccess)
     .fail(ui.failure);
 };
 

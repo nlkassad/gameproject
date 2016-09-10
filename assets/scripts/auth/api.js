@@ -39,9 +39,20 @@ const signOut = () => {
   });
 };
 
+const getGames = () => {
+  return $.ajax({
+    url: app.host + '/games/',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + app.user.token
+    }
+  });
+};
+
 module.exports = {
   signUp,
   signIn,
   changePassword,
   signOut,
+  getGames,
 };
