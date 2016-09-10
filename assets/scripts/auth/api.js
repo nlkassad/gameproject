@@ -2,11 +2,10 @@
 
 const app = require('../app');
 const signUp = (data) => {
-  console.log(data);
   return $.ajax({
     url: app.host + '/sign-up',
     method: 'POST',
-    data:data
+    data:data,
   });
 };
 
@@ -31,10 +30,31 @@ const changePassword = (data) => {
 
 const signOut = () => {
   return $.ajax({
+      url: app.host + /sign-out/ + app.user.id,
       method: 'DELETE',
       headers: {
         Authorization: 'Token token=' + app.user.token
       }
+  });
+};
+
+const getGames = () => {
+  return $.ajax({
+    url: app.host + '/games/',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + app.user.token
+    }
+  });
+};
+
+const startNewGame = () => {
+  return $.ajax({
+    url: app.host + '/games/',
+    method: 'POST',
+    headers: {
+      Authorization: 'Token token=' + app.user.token
+    }
   });
 };
 
@@ -43,4 +63,6 @@ module.exports = {
   signIn,
   changePassword,
   signOut,
+  getGames,
+  startNewGame,
 };

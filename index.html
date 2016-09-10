@@ -1,40 +1,67 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Example</title>
+      <title>TIC TAC TOE</title>
 
       <script src="vendor.bundle.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="bundle.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body class="container-fluid">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Player 1 Insert Coin!</button>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Player 2 Insert Coin!</button>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="email-p1" class="control-label">:</label>
-            <input type="email" class="form-control" id="recipient-name">
+      <button type="button" class="btn btn-lg navbar-btn" id="new-game">NEW GAME</button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" data-whatever="@mdo">PLAY AS X</button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" data-whatever="@fat">PLAY AS O</button>
+      <div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="signInModalLabel">New message</h4>
+            </div>
+            <div class="modal-body">
+              <form name="sign-up" id="sign-up">
+                <fieldset>
+                  <legend>Sign up NAO!</legend>
+                  <input type="text"  name="credentials[email]" placeholder="gimme ur Email">
+                  <input type="password" name="credentials[password]" placeholder="give password">
+                  <input type="password" name="credentials[password_confirmation]" placeholder="confirm passw0rd">
+                  <input type="submit" name="submit" value="Sign up!">
+                </fieldset>
+              </form>
+
+              <form name="sign-in" id="sign-in">
+                <fieldset>
+                  <legend>Sign in</legend>
+                  <input type="text"  name="credentials[email]" placeholder="gimme ur Email">
+                  <input type="password" name="credentials[password]" placeholder="give password">
+                  <input type="submit" name="submit" value="Sign in!">
+                </fieldset>
+              </form>
+
+              <form id="change-password">
+                <fieldset>
+                  <legend>Change ur password nub</legend>
+                  <input type="password"  name="passwords[old]" placeholder="ur old password">
+                  <input type="password" name="passwords[new]" placeholder="n00 password">
+                  <input type="submit" name="submit" value="change ur password">
+                </fieldset>
+              </form>
+
+              <form id="sign-out">
+                <fieldset>
+                  <legend>GTFO</legend>
+                  <input type="submit" name="submit" value="OUT">
+                </fieldset>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="password_p1" class="control-label">Message:</label>
-            <textarea class="password" id="message-text"></textarea>
-          </div>
-        </form>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
-      </div>
-    </div>
-  </div>
-</div>
+      <p id="user-one"> </p>
+      <p>Number of games: <span id="game-count"> </span> </p>
+
       <h1>TicTacToe: CHAMPION EDITION</h1>
       <p>MAKE A LINE OF THREE!</p>
       <div class="game-board">
