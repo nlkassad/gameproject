@@ -2,7 +2,6 @@
 
 const app = require('../app');
 const signUp = (data) => {
-  console.log(data);
   return $.ajax({
     url: app.host + '/sign-up',
     method: 'POST',
@@ -49,10 +48,21 @@ const getGames = () => {
   });
 };
 
+const startNewGame = () => {
+  return $.ajax({
+    url: app.host + '/games/',
+    method: 'POST',
+    headers: {
+      Authorization: 'Token token=' + app.user.token
+    }
+  });
+};
+
 module.exports = {
   signUp,
   signIn,
   changePassword,
   signOut,
   getGames,
+  startNewGame,
 };

@@ -9,7 +9,6 @@ const hideModal = function (){
 };
 
 const displayGames = (data) => {
-  debugger;
   console.log(data.games.length);
   app.user.games = data.games;
   $('#game-count').text(app.user.games.length);

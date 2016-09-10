@@ -7,15 +7,10 @@
 require('./example');
 const authEvents = require('./auth/events.js');
 
+// On document ready
+$(() => {
 // $("#toctitle").on('click', function(event){
 //   console.log("event is ", event);
 
-function handleBoxAClick () {
-  console.log("clicked box A!");
-}
-
-// On document ready
-$(() => {
   authEvents.addHandlers();
-  $('#box-A').on('click', handleBoxAClick);
 });
