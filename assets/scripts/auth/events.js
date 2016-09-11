@@ -41,8 +41,7 @@ const onSignOut = function (event) {
 };
 
 function handleCellClick(event) {
-  debugger;
-  const cellIndex = parseInt(event.target.dataset.index)
+  const cellIndex = parseInt(event.target.dataset.index);
   if (app.game.cells[cellIndex] === ""){
   } else {
     alert('NOPE');
