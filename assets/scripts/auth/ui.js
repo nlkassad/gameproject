@@ -45,10 +45,19 @@ const signOutSuccess = () => {
   $("#user-one").text("");
 };
 
+const startGame = (data) => {
+  app.game = data.game;
+  app.turn = 0;
+  $('.game-cell').each(function(i) {
+    $(this).text(app.game.cells[i]);
+  });
+};
+
 module.exports = {
   failure,
   signUpSuccess,
   signInSuccess,
   changePasswordSuccess,
   signOutSuccess,
+  startGame,
 };
