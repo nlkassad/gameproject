@@ -32,6 +32,7 @@ const onChangePassword = function (event) {
     .fail(ui.failure);
 };
 
+
 const onSignOut = function (event) {
   event.preventDefault();
 
@@ -40,13 +41,28 @@ const onSignOut = function (event) {
     .fail(ui.failure);
 };
 
-function handleCellClick(event) {
+let player = 'X';
+
+const switchTurn = function() {
+  if (player === 'X') {
+    player = 'O';
+  }else{
+    player = 'X';
+    $("#messages").modal("Hey it's player" + player + "'s turn!'" );
+  }
+};
+
+function whenClicked(event) {
   const cellIndex = parseInt(event.target.dataset.index);
   if (app.game.cells[cellIndex] === ""){
+    switchTurn();
+    return(cellIndex);
   } else {
     alert('NOPE');
   }
 }
+
+
 
 function newGame() {
   api.startNewGame()
@@ -61,12 +77,13 @@ const addHandlers = () => {
   $('#sign-out').on('submit', onSignOut);
   $('#new-game').on('click', newGame);
   $('.game-cell').each(function(){
-    $(this).on('click', handleCellClick);
+    $(this).on('click', whenClicked);
   });
 
 };
 
 module.exports = {
   addHandlers,
-  handleCellClick,
+  whenClicked,
+  // cellIndex,
 };
