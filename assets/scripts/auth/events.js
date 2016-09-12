@@ -4,6 +4,7 @@ const getFormFields = require(`../../../lib/get-form-fields`);
 const api = require('./api');
 const ui = require('./ui');
 let app = require('../app');
+let bootstrapButton = $.fn.button.noConflict();
 
 const onSignUp = function (event) {
   let data = getFormFields(event.target);
@@ -32,7 +33,6 @@ const onChangePassword = function (event) {
     .fail(ui.failure);
 };
 
-
 const onSignOut = function (event) {
   event.preventDefault();
 
@@ -58,11 +58,9 @@ function whenClicked(event) {
     switchTurn();
     return(cellIndex);
   } else {
-    alert('NOPE');
+    $("#messages").modal("CAN'T DO THAT" );
   }
 }
-
-
 
 function newGame() {
   api.startNewGame()
@@ -79,7 +77,6 @@ const addHandlers = () => {
   $('.game-cell').each(function(){
     $(this).on('click', whenClicked);
   });
-
 };
 
 module.exports = {
