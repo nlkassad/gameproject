@@ -43,6 +43,7 @@ const onSignOut = function (event) {
 let player = 'X';
 
 const switchTurn = function() {
+  // debugger;
   if (player === 'X') {
     player = 'O';
   }else{
@@ -52,6 +53,7 @@ const switchTurn = function() {
 };
 
 function whenClicked(event) {
+  // debugger;
   const cellIndex = parseInt(event.target.dataset.index);
   if (app.game.cells[cellIndex] === ""){
     switchTurn();
@@ -61,10 +63,17 @@ function whenClicked(event) {
   }
 }
 
+// function printBoard() {
+  // add 'player' variable into space 'cellIndex'
+
+// }
+
+
 function newGame() {
   api.startNewGame()
     .done(ui.startGame)
     .fail(ui.failure);
+  $("#messages").text("New game? Good luck!" );
 }
 
 const addHandlers = () => {
