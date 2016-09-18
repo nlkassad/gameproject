@@ -52,6 +52,13 @@ p {
   padding: 5px;
 }
 
-aside {
+.message-board {
+  display: table;
   float: right;
+  font-size: 38px;
+}
+
+.message-board p {
+  display: table-cell;
+  vertical-align: middle;
 }
