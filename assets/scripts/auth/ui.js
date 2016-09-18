@@ -21,6 +21,7 @@ const signInSuccess = (data) => {
   app.user = data.user;
   hideModal();
   $("#user-one").text(app.user.email);
+  $("#messages").text("How's it going " + app.user.email);
   return api.getGames()
     .done(displayGames)
     .fail(failure);
@@ -30,6 +31,8 @@ const signUpSuccess = (data) => {
   app.user = data.user;
   hideModal();
   $("#user-one").text(app.user.email);
+  $("#messages").text("Welcome, " + app.user.email);
+
 };
 
 const changePasswordSuccess = () => {

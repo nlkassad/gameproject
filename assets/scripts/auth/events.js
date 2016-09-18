@@ -18,7 +18,6 @@ const onSignUp = function (event) {
 const onSignIn = function (event) {
   let data = getFormFields(event.target);
   event.preventDefault();
-
   api.signIn(data)
     .then(ui.signInSuccess)
     .fail(ui.failure);
@@ -48,7 +47,7 @@ const switchTurn = function() {
     player = 'O';
   }else{
     player = 'X';
-    $("#messages").modal("Hey it's player" + player + "'s turn!'" );
+    $("#messages").text("Hey it's player" + player + "'s turn!'" );
   }
 };
 
@@ -58,7 +57,7 @@ function whenClicked(event) {
     switchTurn();
     return(cellIndex);
   } else {
-    $("#messages").modal("CAN'T DO THAT" );
+    $("#messages").text('show', "CAN'T DO THAT" );
   }
 }
 
