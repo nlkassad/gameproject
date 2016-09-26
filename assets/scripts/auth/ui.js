@@ -36,14 +36,12 @@ const signUpSuccess = (data) => {
 };
 
 const changePasswordSuccess = () => {
-  console.log('Passw0rd ch4nged lol');
-  hideModal();
+  $("#messages").text("Password hanged, " + app.user.email);
 };
 
 const signOutSuccess = () => {
   app.user = null;
-  hideModal();
-  $("#user-one").text("");
+  $("#messages").text(app.user.email + " signed out");
 };
 
 const startGame = (data) => {

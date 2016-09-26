@@ -3,8 +3,10 @@
 const getFormFields = require(`../../../lib/get-form-fields`);
 const api = require('./api');
 const ui = require('./ui');
+const winlogic = require('../winlogic')
 let app = require('../app');
-let bootstrapButton = $.fn.button.noConflict();
+let player = 'X';
+let cellIndex = 0;
 
 const onSignUp = function (event) {
   let data = getFormFields(event.target);
@@ -40,33 +42,44 @@ const onSignOut = function (event) {
     .fail(ui.failure);
 };
 
-let player = 'X';
-
-const switchTurn = function() {
-  // debugger;
+let switchTurn = function() {
+  debugger;
   if (player === 'X') {
     player = 'O';
-  }else{
+    $("#messages").text("Hey it's player" + player + "'s turn!'" );
+    // printBoard();
+    // return player;
+  } else {
     player = 'X';
     $("#messages").text("Hey it's player" + player + "'s turn!'" );
+    // printBoard();
+    // return player;
   }
 };
 
 function whenClicked(event) {
-  // debugger;
-  const cellIndex = parseInt(event.target.dataset.index);
+  cellIndex = parseInt(event.target.dataset.index);
   if (app.game.cells[cellIndex] === ""){
     switchTurn();
-    return(cellIndex);
+    // debugger;
+    return cellIndex;
+    // playerTurn();
   } else {
     $("#messages").text('show', "CAN'T DO THAT" );
   }
 }
 
-// function printBoard() {
-  // add 'player' variable into space 'cellIndex'
+// add 'player' variable into space 'cellIndex'
+function printBoard(cellIndex, player) {
+  $(app.game.cells(cellIndex)).text(player)
+};
 
-// }
+// const playerTurn (event) => {
+//   switchTurn();
+//   printBoard();
+  // winlogic();
+  // noWins();
+// };
 
 
 function newGame() {
@@ -90,5 +103,6 @@ const addHandlers = () => {
 module.exports = {
   addHandlers,
   whenClicked,
+  // printBoard,
   // cellIndex,
 };

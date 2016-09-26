@@ -1,5 +1,5 @@
-'use strict'
-
-const checkBoard () => {
-  
-}
+// 'use strict'
+//
+// const checkBoard () => {
+//
+// };
