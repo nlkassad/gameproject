@@ -1,6 +1,8 @@
 'use strict';
 
 const app = require('../app');
+
+
 const signUp = (data) => {
   return $.ajax({
     url: app.host + '/sign-up',
@@ -59,6 +61,21 @@ const startNewGame = () => {
     //   "token": app.user.token,
     //   "cells": ["","","","","","","",""],
     // }
+    }
+  });
+};
+
+const updateBoard = () => {
+  return $.ajax({
+    url: app.host + '/games/:id',
+    method: 'PATCH',
+    data: {
+      "game": {
+        "cell": {
+          "index": cellIndex,
+          "value": player,
+        }
+      }
     }
   });
 };

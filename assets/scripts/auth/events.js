@@ -3,9 +3,8 @@
 const getFormFields = require(`../../../lib/get-form-fields`);
 const api = require('./api');
 const ui = require('./ui');
-const winlogic = require('../winlogic')
+const eventsGame = require('../eventsgame');
 let app = require('../app');
-let player = 'X';
 let cellIndex = 0;
 
 const onSignUp = function (event) {
@@ -42,51 +41,21 @@ const onSignOut = function (event) {
     .fail(ui.failure);
 };
 
-let switchTurn = function() {
-  debugger;
-  if (player === 'X') {
-    player = 'O';
-    $("#messages").text("Hey it's player" + player + "'s turn!'" );
-    // printBoard();
-    // return player;
-  } else {
-    player = 'X';
-    $("#messages").text("Hey it's player" + player + "'s turn!'" );
-    // printBoard();
-    // return player;
-  }
-};
-
-function whenClicked(event) {
-  cellIndex = parseInt(event.target.dataset.index);
-  if (app.game.cells[cellIndex] === ""){
-    switchTurn();
-    // debugger;
-    return cellIndex;
-    // playerTurn();
-  } else {
-    $("#messages").text('show', "CAN'T DO THAT" );
-  }
-}
-
-// add 'player' variable into space 'cellIndex'
-function printBoard(cellIndex, player) {
-  $(app.game.cells(cellIndex)).text(player)
-};
-
-// const playerTurn (event) => {
-//   switchTurn();
-//   printBoard();
-  // winlogic();
-  // noWins();
-// };
-
-
 function newGame() {
   api.startNewGame()
     .done(ui.startGame)
     .fail(ui.failure);
   $("#messages").text("New game? Good luck!" );
+}
+
+function whenClicked(event) {
+  cellIndex = parseInt(event.target.dataset.index);
+  if (app.game.cells[cellIndex] === ""){
+    eventsGame.printBoard();
+    eventsGame.switchTurn();
+  } else {
+    $("#messages").text('show', "CAN'T DO THAT" );
+  }
 }
 
 const addHandlers = () => {
@@ -102,7 +71,6 @@ const addHandlers = () => {
 
 module.exports = {
   addHandlers,
+  cellIndex,
   whenClicked,
-  // printBoard,
-  // cellIndex,
 };
