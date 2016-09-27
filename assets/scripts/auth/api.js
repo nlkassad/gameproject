@@ -1,7 +1,7 @@
 'use strict';
 
 const app = require('../app');
-const eventsGame = require('../eventsgame')
+const eventsGame = require('../eventsgame');
 
 const signUp = (data) => {
   return $.ajax({
@@ -66,10 +66,12 @@ const startNewGame = () => {
 };
 
 const updateBoard = () => {
-  debugger;
+  // debugger;
   let gameId = app.game.id;
   let index = parseInt(event.target.dataset.index);
   let value = eventsGame.player;
+  console.log('my issue is here and AJAX call is returning 400, but i am totally puzzled on where to go from there');
+  debugger;
   return $.ajax({
     url: app.host + '/games/' + gameId,
     method: 'PATCH',
@@ -77,10 +79,10 @@ const updateBoard = () => {
       Authorization: 'Token token=' + app.user.token,
     data: {
       "game": {
-        "cells": {
-          "index": index,
-          "value": 'X',
-        }
+        "cell": {
+          "index": app.game.cells[index],
+          "value": value
+          } 
         }
       }
     }

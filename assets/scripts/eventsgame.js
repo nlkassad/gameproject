@@ -3,7 +3,7 @@
 const app = require('./app');
 const events = require('./auth/events');
 // const winlogic = require('../winlogic');
-let player = 'X';
+let player = 'x';
 // let cellIndex = 0;
 
 
@@ -22,12 +22,12 @@ let player = 'X';
 
 let switchTurn = function() {
   // debugger;
-  if (player === 'X') {
-    player = 'O';
+  if (player === 'x') {
+    player = 'o';
     $("#messages").text("Hey it's player " + player + "'s turn!'" );
     // return player;
   } else {
-    player = 'X';
+    player = 'x';
     $("#messages").text("Hey it's player " + player + "'s turn!'" );
     // return player;
   }
@@ -50,4 +50,5 @@ function printBoard(cellIndex, player) {
 module.exports = {
   printBoard,
   switchTurn,
+  player,
 };
