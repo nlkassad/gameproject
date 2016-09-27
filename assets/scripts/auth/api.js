@@ -1,12 +1,13 @@
 'use strict';
 
 const app = require('../app');
+const eventsGame = require('../eventsgame')
+
 const signUp = (data) => {
-  console.log(data);
   return $.ajax({
     url: app.host + '/sign-up',
     method: 'POST',
-    data:data
+    data:data,
   });
 };
 
@@ -31,10 +32,58 @@ const changePassword = (data) => {
 
 const signOut = () => {
   return $.ajax({
+      url: app.host + /sign-out/ + app.user.id,
       method: 'DELETE',
       headers: {
         Authorization: 'Token token=' + app.user.token
       }
+  });
+};
+
+const getGames = () => {
+  return $.ajax({
+    url: app.host + '/games/',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + app.user.token
+    }
+  });
+};
+
+const startNewGame = () => {
+  return $.ajax({
+    url: app.host + '/games/',
+    method: 'POST',
+    headers: {
+      Authorization: 'Token token=' + app.user.token
+      // IDFK how to make this work yet
+    // data: {
+    //   "token": app.user.token,
+    //   "cells": ["","","","","","","",""],
+    // }
+    }
+  });
+};
+
+const updateBoard = () => {
+  debugger;
+  let gameId = app.game.id;
+  let index = parseInt(event.target.dataset.index);
+  let value = eventsGame.player;
+  return $.ajax({
+    url: app.host + '/games/' + gameId,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + app.user.token,
+    data: {
+      "game": {
+        "cells": {
+          "index": index,
+          "value": 'X',
+        }
+        }
+      }
+    }
   });
 };
 
@@ -43,4 +92,7 @@ module.exports = {
   signIn,
   changePassword,
   signOut,
+  getGames,
+  startNewGame,
+  updateBoard,
 };

@@ -3,22 +3,24 @@
 const getFormFields = require(`../../../lib/get-form-fields`);
 const api = require('./api');
 const ui = require('./ui');
+const eventsGame = require('../eventsgame');
+let app = require('../app');
+let cellIndex = 0;
 
 const onSignUp = function (event) {
   let data = getFormFields(event.target);
   event.preventDefault();
 
   api.signUp(data)
-    .done(ui.success)
+    .done(ui.signUpSuccess)
     .fail(ui.failure);
 };
 
 const onSignIn = function (event) {
   let data = getFormFields(event.target);
   event.preventDefault();
-
   api.signIn(data)
-    .done(ui.signInSuccess)
+    .then(ui.signInSuccess)
     .fail(ui.failure);
 };
 
@@ -39,15 +41,38 @@ const onSignOut = function (event) {
     .fail(ui.failure);
 };
 
+function newGame() {
+  api.startNewGame()
+    .done(ui.startGame)
+    .fail(ui.failure);
+  $("#messages").text("New game? Good luck!" );
+}
+
+
+function whenClicked(event) {
+  let cellIndex = parseInt(event.target.dataset.index);
+  if (app.game.cells[cellIndex] === ""){
+    eventsGame.printBoard();
+    eventsGame.switchTurn();
+    api.updateBoard();
+  } else {
+    $("#messages").text('show', "CAN'T DO THAT" );
+  }
+}
 
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp);
   $('#sign-in').on('submit', onSignIn);
   $('#change-password').on('submit', onChangePassword);
   $('#sign-out').on('submit', onSignOut);
-
+  $('#new-game').on('click', newGame);
+  $('.game-cell').each(function(){
+    $(this).on('click', whenClicked);
+  });
 };
 
 module.exports = {
   addHandlers,
+  cellIndex,
+  whenClicked,
 };
