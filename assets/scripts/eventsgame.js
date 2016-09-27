@@ -4,18 +4,31 @@ const app = require('./app');
 const events = require('./auth/events');
 // const winlogic = require('../winlogic');
 let player = 'X';
-let cellIndex = 0;
+// let cellIndex = 0;
 
+
+// let whoseTurn = function(player) {
+//   if (app.turn%2 === 0){
+//     let player = 'X';
+    // $("#messages").text("Hey it's player " + player + "'s turn!'" );
+//     return player;
+//   }
+//   else {
+//     let player = 'O';
+//     return player;
+//   }
+// };
+// }
 
 let switchTurn = function() {
   // debugger;
   if (player === 'X') {
     player = 'O';
-    $("#messages").text("Hey it's player" + player + "'s turn!'" );
+    $("#messages").text("Hey it's player " + player + "'s turn!'" );
     // return player;
   } else {
     player = 'X';
-    $("#messages").text("Hey it's player" + player + "'s turn!'" );
+    $("#messages").text("Hey it's player " + player + "'s turn!'" );
     // return player;
   }
 };
@@ -25,8 +38,6 @@ function printBoard(cellIndex, player) {
   // debugger;
   $(app.game.cells[cellIndex]).html(player);
 }
-
-
 
 
 // const playerTurn (event) => {

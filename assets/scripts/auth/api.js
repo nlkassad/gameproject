@@ -1,7 +1,7 @@
 'use strict';
 
 const app = require('../app');
-
+const eventsGame = require('../eventsgame')
 
 const signUp = (data) => {
   return $.ajax({
@@ -66,14 +66,21 @@ const startNewGame = () => {
 };
 
 const updateBoard = () => {
+  debugger;
+  let gameId = app.game.id;
+  let index = parseInt(event.target.dataset.index);
+  let value = eventsGame.player;
   return $.ajax({
-    url: app.host + '/games/:id',
+    url: app.host + '/games/' + gameId,
     method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + app.user.token,
     data: {
       "game": {
-        "cell": {
-          "index": cellIndex,
-          "value": player,
+        "cells": {
+          "index": index,
+          "value": 'X',
+        }
         }
       }
     }
@@ -87,4 +94,5 @@ module.exports = {
   signOut,
   getGames,
   startNewGame,
+  updateBoard,
 };
