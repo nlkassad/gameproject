@@ -80,11 +80,11 @@ const updateBoard = () => {
         "cells": {
           "index": app.game.cells[index],
           "value": value,
+            }
           }
         }
       }
-  });
-};
+  );};
 
 module.exports = {
   signUp,

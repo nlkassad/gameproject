@@ -23,7 +23,7 @@ let player = 'x';
 let switchTurn = function() {
   // debugger;
   if (player === 'x') {
-    player = 'x';
+    player = 'o';
     $("#messages").text("Hey it's player " + player + "'s turn!'" );
     // return player;
   } else {
@@ -34,10 +34,22 @@ let switchTurn = function() {
 };
 
 // add 'player' variable into space 'cellIndex'
-function printBoard(cellIndex, player) {
-  // debugger;
-  $(app.game.cells[cellIndex]).html(player);
+function printBoard() {
+  debugger;
+  $("#box-A").text(app.game.cells[0]);
+  $("#box-B").text(app.game.cells[1]);
+  $("#box-C").text(app.game.cells[2]);
+  $("#box-D").text(app.game.cells[3]);
+  $("#box-E").text(app.game.cells[4]);
+  $("#box-F").text(app.game.cells[5]);
+  $("#box-G").text(app.game.cells[6]);
+  $("#box-H").text(app.game.cells[7]);
+  $("#box-I").text(app.game.cells[8]);
 }
+
+
+
+
 
 
 // const playerTurn (event) => {

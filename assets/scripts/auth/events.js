@@ -48,13 +48,13 @@ function newGame() {
   $("#messages").text("New game? Good luck!" );
 }
 
-
 function whenClicked(event) {
   let cellIndex = parseInt(event.target.dataset.index);
   if (app.game.cells[cellIndex] === ""){
-    eventsGame.printBoard();
     eventsGame.switchTurn();
     api.updateBoard();
+    eventsGame.printBoard(cellIndex, eventsGame.player);
+    // debugger;
   } else {
     $("#messages").text('show', "CAN'T DO THAT" );
   }
