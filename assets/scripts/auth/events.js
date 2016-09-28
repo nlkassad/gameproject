@@ -52,13 +52,19 @@ function whenClicked(event) {
   let cellIndex = parseInt(event.target.dataset.index);
   if (app.game.cells[cellIndex] === ""){
     eventsGame.switchTurn();
+    eventsGame.gameBoard[cellIndex] = eventsGame.player;
+    debugger;
     api.updateBoard();
-    eventsGame.printBoard(cellIndex, eventsGame.player);
+    eventsGame.printBoard();
     // debugger;
   } else {
     $("#messages").text('show', "CAN'T DO THAT" );
   }
 }
+
+// const placeMarker = function (cell) {
+//   $(cell).html(eventsGame.player);
+// };
 
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp);

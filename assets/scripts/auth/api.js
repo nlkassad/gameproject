@@ -79,7 +79,7 @@ const updateBoard = () => {
       "game": {
         "cells": {
           "index": app.game.cells[index],
-          "value": value,
+          "value": eventsGame.gameBoard,
             }
           }
         }

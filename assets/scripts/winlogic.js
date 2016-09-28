@@ -1,37 +1,48 @@
 'use strict';
-// 
-// const eventsGame = require('../eventsgame');
-// cellIndex = eventsGame.cellIndex;
-// player = eventsGame.player;
-//
-// let doesXWin = function() {
-//   if (((cellIndex(0) === 'X') && (cellIndex(1) === 'X') && (cellIndex(2) === 'X')) ||
-//     ((cellIndex(3) === 'X') && (cellIndex(4) === 'X') (cellIndex(5) === 'X')) ||
-//     ((cellIndex(6) === 'X') && (cellIndex(7) === 'X') (cellIndex(8) === 'X')) ||
-//     // ^horizontals
-//     ((cellIndex(0) === 'X') && (cellIndex(3) === 'X') (cellIndex(6) === 'X')) ||
-//     ((cellIndex(1) === 'X') && (cellIndex(4) === 'X') (cellIndex(7) === 'X')) ||
-//     ((cellIndex(2) === 'X') && (cellIndex(5) === 'X') (cellIndex(8) === 'X')) ||
-//     // ^verticals
-//     ((cellIndex(0) === 'X') && (cellIndex(4) === 'X') (cellIndex(8) === 'X')) ||
-//     ((cellIndex(2) === 'X') && (cellIndex(4) === 'X') (cellIndex(6) === 'X'))) {
-//     // ^diagonals
-//     winnerX();
-//   }
-// }
-//
-// let doesOWin = function() {
-//   if (((cellIndex(0) === 'O') && (cellIndex(1) === 'O') && (cellIndex(2) === 'O')) ||
-//     ((cellIndex(3) === 'O') && (cellIndex(4) === 'O') (cellIndex(5) === 'O')) ||
-//     ((cellIndex(6) === 'O') && (cellIndex(7) === 'O') (cellIndex(8) === 'O')) ||
-//     // ^horizontals
-//     ((cellIndex(0) === 'O') && (cellIndex(3) === 'O') (cellIndex(6) === 'O')) ||
-//     ((cellIndex(1) === 'O') && (cellIndex(4) === 'O') (cellIndex(7) === 'O')) ||
-//     ((cellIndex(2) === 'O') && (cellIndex(5) === 'O') (cellIndex(8) === 'O')) ||
-//     // ^verticals
-//     ((cellIndex(0) === 'O') && (cellIndex(4) === 'O') (cellIndex(8) === 'O')) ||
-//     ((cellIndex(2) === 'O') && (cellIndex(4) === 'O') (cellIndex(6) === 'O'))) {
-//     // ^diagonals
-//     winnerO();
-//   }
-// };
+
+const eventsGame = require('../eventsgame');
+cellIndex = eventsGame.cellIndex;
+player = eventsGame.player;
+gameBoard = eventsGame.gameBoard;
+
+let doesXWin = function() {
+  if (((gameBoard[0] === 'x') && (gameBoard[1] === 'x') && (gameBoard[2] === 'x')) ||
+    ((gameBoard[3] === 'x') && (gameBoard[4] === 'x') && (gameBoard[5] === 'x')) ||
+    ((gameBoard[6] === 'x') && (gameBoard[7] === 'x') && (gameBoard[8] === 'x')) ||
+    // ^horizontals
+    ((gameBoard[0] === 'x') && (gameBoard[3] === 'x') && (gameBoard[6] === 'x')) ||
+    ((gameBoard[1] === 'x') && (gameBoard[4] === 'x') && (gameBoard[7] === 'x')) ||
+    ((gameBoard[2] === 'x') && (gameBoard[5] === 'x') && (gameBoard[8] === 'x')) ||
+    // ^verticals
+    ((gameBoard[0] === 'x') && (gameBoard[4] === 'x') && (gameBoard[8] === 'x')) ||
+    ((gameBoard[2] === 'x') && (gameBoard[4] === 'x') && (gameBoard[6] === 'x'))) {
+    // ^diagonals
+    winnerX();
+  }
+};
+
+let doesOWin = function() {
+  if (((gameBoard[0] === 'o') && (gameBoard[1] === 'o') && (gameBoard[2] === 'o')) ||
+    ((gameBoard[3] === 'o') && (gameBoard[4] === 'o') && (gameBoard[5] === 'o')) ||
+    ((gameBoard[6] === 'o') && (gameBoard[7] === 'o') && (gameBoard[8] === 'o')) ||
+    // ^horizontals
+    ((gameBoard[0] === 'o') && (gameBoard[3] === 'o') && (gameBoard[6] === 'o')) ||
+    ((gameBoard[1] === 'o') && (gameBoard[4] === 'o') && (gameBoard[7] === 'o')) ||
+    ((gameBoard[2] === 'o') && (gameBoard[5] === 'o') && (gameBoard[8] === 'o')) ||
+    // ^verticals
+    ((gameBoard[0] === 'o') && (gameBoard[4] === 'o') && (gameBoard[8] === 'o')) ||
+    ((gameBoard[2] === 'o') && (gameBoard[4] === 'o') && (gameBoard[6] === 'o'))) {
+    // ^diagonals
+    winnerO();
+  }
+};
+
+winnerO () => {
+  $("#messages").text("PLAYER O WINS!" );
+  $(".game-cell").prop('disabled', true);
+};
+
+winnerX () => {
+  $("#messages").text("PLAYER X WINS!" );
+  $(".game-cell").prop('disabled', true);
+};
