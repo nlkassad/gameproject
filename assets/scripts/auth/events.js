@@ -4,8 +4,11 @@ const getFormFields = require(`../../../lib/get-form-fields`);
 const api = require('./api');
 const ui = require('./ui');
 const eventsGame = require('../eventsgame');
-let app = require('../app');
+const winlogic = require('../winlogic');
+const app = require('../app');
 let cellIndex = 0;
+let gameBoard = eventsGame.gameBoard;
+
 
 const onSignUp = function (event) {
   let data = getFormFields(event.target);
@@ -42,6 +45,7 @@ const onSignOut = function (event) {
 };
 
 function newGame() {
+  let player = 'x';
   api.startNewGame()
     .done(ui.startGame)
     .fail(ui.failure);
@@ -50,21 +54,17 @@ function newGame() {
 
 function whenClicked(event) {
   let cellIndex = parseInt(event.target.dataset.index);
-  if (app.game.cells[cellIndex] === ""){
-    eventsGame.switchTurn();
-    eventsGame.gameBoard[cellIndex] = eventsGame.player;
-    debugger;
+  if (eventsGame.gameBoard[cellIndex] === ""){
+    eventsGame.gameBoard[cellIndex] = eventsGame.switchTurn();
     api.updateBoard();
     eventsGame.printBoard();
+    winlogic.doesXWin();
+    winlogic.doesOWin();
     // debugger;
   } else {
-    $("#messages").text('show', "CAN'T DO THAT" );
+    $("#messages").text("CAN'T DO THAT" );
   }
 }
-
-// const placeMarker = function (cell) {
-//   $(cell).html(eventsGame.player);
-// };
 
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp);
@@ -81,4 +81,5 @@ module.exports = {
   addHandlers,
   cellIndex,
   whenClicked,
+  // player,
 };

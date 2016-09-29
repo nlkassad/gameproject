@@ -1,9 +1,20 @@
 'use strict';
 
-const eventsGame = require('../eventsgame');
-cellIndex = eventsGame.cellIndex;
-player = eventsGame.player;
-gameBoard = eventsGame.gameBoard;
+const app = ('./app');
+const eventsGame = require('./eventsgame');
+// let cellIndex = eventsGame.cellIndex;
+// let player = eventsGame.player;
+let gameBoard = eventsGame.gameBoard;
+
+function winnerO() {
+  $("#messages").text("PLAYER O WINS!" );
+  $(".game-cell").hide();
+}
+
+function winnerX() {
+  $("#messages").text("PLAYER X WINS!" );
+  $(".game-cell").hide();
+}
 
 let doesXWin = function() {
   if (((gameBoard[0] === 'x') && (gameBoard[1] === 'x') && (gameBoard[2] === 'x')) ||
@@ -15,7 +26,7 @@ let doesXWin = function() {
     ((gameBoard[2] === 'x') && (gameBoard[5] === 'x') && (gameBoard[8] === 'x')) ||
     // ^verticals
     ((gameBoard[0] === 'x') && (gameBoard[4] === 'x') && (gameBoard[8] === 'x')) ||
-    ((gameBoard[2] === 'x') && (gameBoard[4] === 'x') && (gameBoard[6] === 'x'))) {
+    ((gameBoard[2] === 'x') && (gameBoard[4] === 'x') && (gameBoard[6] === 'x'))){
     // ^diagonals
     winnerX();
   }
@@ -37,12 +48,7 @@ let doesOWin = function() {
   }
 };
 
-winnerO () => {
-  $("#messages").text("PLAYER O WINS!" );
-  $(".game-cell").prop('disabled', true);
-};
-
-winnerX () => {
-  $("#messages").text("PLAYER X WINS!" );
-  $(".game-cell").prop('disabled', true);
+module.exports = {
+  doesXWin,
+  doesOWin
 };

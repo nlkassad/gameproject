@@ -56,19 +56,33 @@ const startNewGame = () => {
     method: 'POST',
     headers: {
       Authorization: 'Token token=' + app.user.token
-      // IDFK how to make this work yet
-    // data: {
-    //   "token": app.user.token,
-    //   "cells": ["","","","","","","",""],
-    // }
-    }
+      },
+      data: {
+        game: "",
+          "over": false,
+
+            }
   });
 };
 
+const gameOver = function () {
+  let gameId = app.game.id;
+  return $.ajax({
+      method: 'PATCH',
+      url: app.host + '/games/' + gameId,
+      headers: {
+      Authorization: 'Token token=' + app.user.token,
+      },
+      data: {
+           "game": {
+              "over": true
+                    }
+            }
+      });
+  };
+
 const updateBoard = () => {
   let gameId = app.game.id;
-  let index = parseInt(event.target.dataset.index);
-  let value = eventsGame.player;
   return $.ajax({
     url: app.host + '/games/' + gameId,
     method: 'PATCH',
@@ -78,12 +92,12 @@ const updateBoard = () => {
     data: {
       "game": {
         "cells": {
-          "index": app.game.cells[index],
+          "index": app.game.cells,
           "value": eventsGame.gameBoard,
-            }
+                  }
+              }
           }
         }
-      }
   );};
 
 module.exports = {
@@ -94,4 +108,5 @@ module.exports = {
   getGames,
   startNewGame,
   updateBoard,
+  gameOver
 };
