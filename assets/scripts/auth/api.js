@@ -1,7 +1,7 @@
 'use strict';
 
 const app = require('../app');
-
+const eventsGame = require('../eventsgame');
 
 const signUp = (data) => {
   return $.ajax({
@@ -56,29 +56,49 @@ const startNewGame = () => {
     method: 'POST',
     headers: {
       Authorization: 'Token token=' + app.user.token
-      // IDFK how to make this work yet
-    // data: {
-    //   "token": app.user.token,
-    //   "cells": ["","","","","","","",""],
-    // }
-    }
+      },
+      data: {
+        game: "",
+          "over": false,
+
+            }
   });
 };
 
-const updateBoard = () => {
+const gameOver = function () {
+  let gameId = app.game.id;
   return $.ajax({
-    url: app.host + '/games/:id',
+      method: 'PATCH',
+      url: app.host + '/games/' + gameId,
+      headers: {
+      Authorization: 'Token token=' + app.user.token,
+      },
+      data: {
+           "game": {
+              "over": true
+                    }
+            }
+      });
+  };
+
+const updateBoard = () => {
+  let gameId = app.game.id;
+  return $.ajax({
+    url: app.host + '/games/' + gameId,
     method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + app.user.token,
+    },
     data: {
       "game": {
-        "cell": {
-          "index": cellIndex,
-          "value": player,
+        "cells": {
+          "index": app.game.cells,
+          "value": eventsGame.gameBoard,
+                  }
+              }
+          }
         }
-      }
-    }
-  });
-};
+  );};
 
 module.exports = {
   signUp,
@@ -87,4 +107,6 @@ module.exports = {
   signOut,
   getGames,
   startNewGame,
+  updateBoard,
+  gameOver
 };
